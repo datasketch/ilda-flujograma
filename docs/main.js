@@ -2,6 +2,8 @@ const svg = document.querySelector('svg');
 const indicadores = document.getElementById('indicadores');
 let touchstart = null;
 
+const isFirefox = navigator.userAgent.includes('Firefox');
+
 function resize() {
   svg.setAttribute('width', window.innerWidth);
   svg.setAttribute('height', window.innerHeight);
@@ -19,7 +21,7 @@ function setViewBox(values) {
 
 function handleWheelEvent(event) {
   const [minX, minY, width, height] = getViewBox();
-  let shift = event.deltaY + minX;
+  let shift = (event.deltaY * ( isFirefox ? 10 :  1)) + minX;
   if (shift < 0) {
     shift = 0;
   }
@@ -34,9 +36,8 @@ function handleTouchStart(event) {
 }
 
 function handleTouchMove(event) {
-  console.log(event.touches[0].pageX);
-  var touchmove = event.changedTouches[0].clientX;
-  var delta = touchstart - touchmove;
+  const touchmove = event.changedTouches[0].clientX;
+  const delta = touchstart - touchmove;
   const [minX, minY, width, height] = getViewBox();
   let shift = minX + (delta < 0 ? -50 : 50);
   if (shift < 0) {
@@ -55,7 +56,7 @@ indicadores.addEventListener('click', function (event) {
 window.onload = function () {
   resize();
   window.addEventListener('resize', resize);
-  window.addEventListener('wheel', handleWheelEvent);
-  window.addEventListener('touchstart', handleTouchStart);
-  window.addEventListener('touchmove', handleTouchMove);
+  document.body.addEventListener('wheel', handleWheelEvent);
+  document.body.addEventListener('touchstart', handleTouchStart);
+  document.body.addEventListener('touchmove', handleTouchMove);
 }
