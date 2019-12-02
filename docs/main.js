@@ -3,7 +3,6 @@ const indicadores = document.getElementById('indicadores');
 let touchstart = null;
 
 const isFirefox = navigator.userAgent.includes('Firefox');
-
 function resize() {
   svg.setAttribute('width', window.innerWidth);
   svg.setAttribute('height', window.innerHeight);
@@ -49,9 +48,11 @@ function handleTouchMove(event) {
   setViewBox([shift, minY, width, height]);
 }
 
-indicadores.addEventListener('click', function (event) {
-  location.replace('/indicadores.svg');
-});
+if (indicadores) {
+  indicadores.addEventListener('click', function (event) {
+    location.replace(location.href + 'indicadores.html');
+  });
+}
 
 window.onload = function () {
   resize();
