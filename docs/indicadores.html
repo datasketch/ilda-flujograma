@@ -6,31 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Flujograma</title>
-  <style>
-    *,
-    *:before,
-    *:after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      height: 100%;
-      overflow: hidden;
-    }
-
-    #graphic {
-      height: 100%;
-      position: relative;
-    }
-  </style>
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
   <!-- 0 0 6252 1024 -->
   <div id="graphic">
+    <div class="snackbar">
+      <p>Desplazate haciendo scroll o con las flechas en tu teclado.</p>
+    </div>
     <?xml version="1.0" encoding="utf-8"?>
     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
       x="0px" y="0px" viewBox="0 0 3361 1024" preserveAspectRatio="xMinYMid slice">
@@ -227,7 +211,7 @@
       </g>
     </svg>
   </div>
-  <script src="main.js"></script>
+  <script src="./main.js"></script>
 </body>
 
 </html>

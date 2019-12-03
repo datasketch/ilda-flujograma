@@ -47,10 +47,27 @@ function handleTouchMove(event) {
   setViewBox([shift, minY, width, height]);
 }
 
+function handleKeyPress(event) {
+  if (!event.keyCode === 37 || !event.keyCode === 39) {
+    return;
+  }
+  const MOVE_LEFT = event.keyCode === 39;
+  const [minX, minY, width, height] = getViewBox();
+  let shift = minX + (MOVE_LEFT ? 50 : -50);
+  if (shift < 0) {
+    shift = 0;
+  }
+  if (shift > (width - window.innerWidth)) {
+    shift = (width - window.innerWidth);
+  }
+  setViewBox([shift, minY, width, height]);
+}
+
 window.onload = function () {
   resize();
   window.addEventListener('resize', resize);
   document.body.addEventListener('wheel', handleWheelEvent);
   document.body.addEventListener('touchstart', handleTouchStart);
   document.body.addEventListener('touchmove', handleTouchMove);
+  window.addEventListener('keydown', handleKeyPress);
 }
