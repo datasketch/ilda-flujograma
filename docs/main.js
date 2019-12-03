@@ -1,6 +1,4 @@
 const svg = document.querySelector('svg');
-const indicadores = document.getElementById('indicadores');
-const camposAnalisis = document.getElementById('campos_analisis');
 let touchstart = null;
 
 const isFirefox = navigator.userAgent.includes('Firefox');
@@ -47,18 +45,6 @@ function handleTouchMove(event) {
     shift = (width - window.innerWidth);
   }
   setViewBox([shift, minY, width, height]);
-}
-
-if (indicadores) {
-  indicadores.addEventListener('click', function (event) {
-    location.assign(location.href + 'indicadores.html');
-  });
-}
-
-if (camposAnalisis) {
-  camposAnalisis.addEventListener('click', function () {
-    location.assign('https://docs.google.com/spreadsheets/d/17fb3XmLCtv42gJj0lhYW43HYU0aqh_ZA77Vyrn6uTy4/edit#gid=157820198')
-  })
 }
 
 window.onload = function () {
